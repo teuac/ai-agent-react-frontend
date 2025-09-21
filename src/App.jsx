@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import userAvatar from "./assets/user.png";
 import botAvatar from "./assets/bot.png";
+import jwt_decode from "jwt-decode"
 
 export default function App() {
   const [messages, setMessages] = useState([]);
@@ -9,6 +10,16 @@ export default function App() {
   const [user, setUser] = useState(null); // guarda token do Google
   const chatEndRef = useRef(null);
 
+
+  const handleJWT= (credentialResponse) => {
+    const decoded = jwt_decode(credentialResponse.credential);
+    setUser({
+      name:decoded.name,
+      email:decoded.email,
+      picture:decoded.picture,
+      token: credentialResponse.credential
+    });
+  };
   // Scroll automático
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -18,7 +29,7 @@ export default function App() {
   const sendMessage = async () => {
     if (!input.trim() || !user) return;
 
-    const userMessage = { type: "user", text: input, avatar: userAvatar };
+    const userMessage = { type: "user", text: input, avatar: user.picture };
     setMessages((prev) => [...prev, userMessage]);
     const currentInput = input;
     setInput("");
