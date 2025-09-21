@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import userAvatar from "./assets/user.png";
 import botAvatar from "./assets/bot.png";
-import {jwt_decode} from "jwt-decode"
+import * as jwt_decode from "jwt-decode"
 
 export default function App() {
   const [messages, setMessages] = useState([]);
