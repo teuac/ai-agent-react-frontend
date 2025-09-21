@@ -79,7 +79,7 @@ export default function App() {
   };
 
   return (
-    <GoogleOAuthProvider clientId="780984315195-n2m81dgh4do70cbasd87sahmm9gc2i96.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="780984315195-u99sft6fnft4nti9kdacb1s2g2rt88jc.apps.googleusercontent.com">
       <div className="flex flex-col max-w-md mx-auto mt-10 p-4 bg-white rounded-xl shadow-lg h-[80vh]">
         {!user ? (
           <div className="flex justify-center items-center h-full">
